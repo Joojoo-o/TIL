@@ -1,0 +1,595 @@
+css에 대한 기초지식 공부
+
+# 📍 css란?
+html의 기본구조를 꾸며주는 것이며,
+스타일을 작업하는 것이라고 한다.
+
+# 📌 css문법의 기본 구조
+### 1. 선택자{속성: 값;}
+- 선택자: 스타일(css)을 적용할 대상
+- 속성: 스타일(css)의 종류 (예: color)
+- 값: 스타일(css)의 값 (예: blue)
+- 속성:(은) 값;(이다)라고 생각하고 구조이해하기
+```
+[HTML]
+<span>Hello!</span>
+
+[css]
+div {
+  font-size: 50px;
+  color: blue;
+  text-decoration: underline;
+}
+```
+html에 쓰인 div의 요소를 불러오며,
+{}중괄호에 있는 css의 내용을 해당 요소에 적용하는 구조이다.
+
+### 2. 선택자{속성: 값; 속성: 값'}
+- { : 스타일 범위의 시작
+- } : 스타일 범위의 끝
+```
+div {
+  color: red; 
+  margin: 20px;
+}
+*해석 : div 태그의 css속성은 컬러는 레드이며, 여백은 20px이다.
+```
+- 줄바꿈을 통해 한 줄에 하나의 속성과 값만 입력하여 보기 쉽게 정렬해 놓는다.
+옳은 예시는 위의 코드 참고
+잘못된 예) 
+- div {color: red; margin: 20px;}
+- div {
+  color: red; margin: 20px;
+}
+
+### 3. 주석처리 (메모)
+주석처리를 해놓으면 브라우저에서 이 범위를 해석하지 않는다. (보여주지 않는다.)
+- 단축키 : ctrl /
+```
+/* 이 사이에 주석 설명 작성(메모) */
+```
+
+# 📌 css 연결 방법
+### 1. 내장 방식
+html내부에서 스타일(css)을 작성하는 방식
+html에서 style태그의 내용으로 스타일을 작성하는 방식
+- 장점 : css파일을 따로 만들지 않아도 괜찮다. (번들과정에서 사용)
+- 단점 : css내용이 많아질 경우, html문서 내에서 전부 처리하기 오래걸린다.
+ html과 css와 js파일은 별도로 관리해야 한다. (유지보수에 좋다.)
+```
+<style>
+  div {
+    color: red;
+    margin: 20px;
+  }
+</style>
+```
+
+### 2. 인라인 방식
+html내부에서 스타일(css)을 작성하는 방식
+요소의 style 속성에 직접 스타일을 작성하는 방식 (선택자 없음)
+- 우선순위가 가장 우선이 되기 때문에 css에서 수정이 어렵다.
+- 유지보수에 어려움이 있다.
+```
+<div style="color: red; margin: 20px;></div>
+```
+
+
+### 3. 링크 방식
+html에서 link태그로 외부 파일인 css문서를 가져와서 연결하는 방식
+- 병렬 연결 방식
+ 한번에 해석되어 가져온다.
+```
+<link rel="stylesheet" href="./css/main.css">
+
+* rel은 html과의 관계이며,
+  href는 경로를 말한다.
+  ./css는 html파일의 주변경로에 있으며 ./css/main.css는 css파일 안에 있는 main.css파일을 말한다.
+```
+
+
+### 4. @inport 방식
+css문서 안에서 또다른 css의 문서를 가져와 연결하는 방식
+css파일이 여러개 있을 경우 사용된다.
+css에서 @import로 css파일을 가져온다.
+- 직렬 연결 방식 
+ (html에서 css(main.css)를 가져오고 main.css에서 box.css를 가져오는 방식)
+- 연결된 순서대로 해석이 되기 때문에 연결을 지연시킬려는 목적으로 사용되기도 한다.
+
+```
+[css]
+@import url("./box.css");
+
+*css파일 주변경로에 있는 box.css파일을 가져온다.
+```
+
+# 📌 css선택자
+
+### 1. 기본 선택자
+**전체선택자 (*)**
+모든 요소를 선택한다는 것을 의미한다.
+- *를 사용하여 선택 
+- 단독으로 사용되지는 않는다.
+- 복합선택자에서의 모든 요소를 선택할 때 주로 사용된다.
+```
+*으로 모든 요소를 선택
+(css가 연결되어 있는 html의 모든 요소를 선택 한다.)
+```
+**태그 선택자 (태그이름)**
+태그 이름에 해당되는 모든 요소 선택
+- 태그 이름을 사용하여 선택
+```
+[HTML]
+<div>
+  <ul>
+    <li>사과</li> (선택O)
+    <li>딸기</li> (선택O)
+    <li>오렌지</li> (선택O)
+  </ul>
+</div>
+
+[css]
+li {
+  color: red
+}
+
+* li에 해당되는 사과, 딸기, 오렌지 요소를 모두 선택
+```
+
+**class 선택자 (.)**
+html에서 class의 속성값인 요소를 선택
+- .과 class 이름을 입력하여 선택
+- 태그가 달라도 class 명이 같으면 동시에 선택된다.
+```
+[HTML]
+<div>
+  <ul>
+    <li>사과</li>
+    <li>딸기</li>
+    <li class="orange">오렌지</li> (선택O)
+  </ul>
+  <span class="orange">오렌지</span> (선택O)
+</div>
+
+[css]
+.orange {
+  color: red;
+}
+
+* li와 span태그 모두 선택되어 스타일(css)가 적용된다. (class명이 같기 때문)
+```
+
+**id 선택자 (#)**
+html에서 id의 속성값을 선택
+- #과 id명을 사용하여 선택한다.
+- id는 중복될 수 없다.
+```
+[HTML]
+<div>
+  <ul>
+    <li>사과</li>
+    <li>딸기</li>
+    <li id="orange">오렌지</li> (선택O)
+  </ul>
+  <span class="orange">오렌지</span>
+</div>
+
+[css]
+#orange {
+  color: red;
+}
+
+* li태그의 id명인 orange만 선택되어 스타일이 적용된다.
+```
+
+### 2. 복합 선택자
+**일치 선택자**
+- 두개 이상의 선택자를 동시에 만족하는 요소를 선택한다.
+- 특별한 기호 없이 두가지 이상의 선택자를 붙여서 작성한다.
+- 태그 선택자를 제일 앞에 적고 class나 id 선택자의 기호를 입력하여 작성한다.
+```
+[HTML]
+<div>
+  <ul>
+    <li>사과</li>
+    <li>딸기</li>
+    <li class="orange">오렌지</li> (선택X)
+  </ul>
+  <span class="orange">오렌지</span> (선택O)
+</div>
+
+[css]
+sapn.orange {
+  color: red;
+}
+
+*span에서 class명이 orange인 요소를 선택하여 스타일(css)을 적용한다.
+```
+
+**자식 선택자 (>)**
+- 선택자의 자식 요소를 선택한다.
+- 부모요소> 자식요소를 입력하여 사용한다.
+❓❓❓❓❓
+- (기호)> 다음에 띄어쓰기를 해주어야 하는 것인가???
+ (띄어쓰기를 해도, 안해도 스타일 적용은 되었다.)
+❓❓❓❓❓
+
+```
+[HTML]
+<div>
+  <ul>
+    <li>사과</li>
+    <li>딸기</li>
+    <li class="orange">오렌지</li> (선택O)
+  </ul>
+  <span class="orange">오렌지</span> (선택X)
+</div>
+
+[css]
+ul> .orange {
+  color: red;
+}
+
+* ul태그의 자식 요소인 li중에서 .orange(class명이 orange)인 요소를 선택하여 스타일(css)을 적용한다.
+```
+
+**하위(후손) 선택자 ( 띄어쓰기)**
+선택자의 하위요소를 선택한다.
+- 띄어쓰기가 선택자의 기호이다.
+```
+[HTML]
+<div>
+  <ul>
+    <li>사과</li>
+    <li>딸기</li>
+    <li class="orange">오렌지</li> (선택O)
+  </ul>
+  <span class="orange">오렌지</span> (선택O)
+</div>
+<span class="orange"></span> (선택X)
+
+[css]
+div .orange {
+  color: red;
+}
+
+*div의 자식요소 뿐만 아니라 모든 후손요소들 중에서 .orange(class명이 orange)인 요소를 선택하여 스타일(css)을 적용한다.
+```
+
+**인접 형제 선택자 (+)**
+선택자의 다음 형제 요소를 하나 선택한다.
+- 형제 : 부모가 같은 요소
+❓❓❓❓❓
+- 띄어쓰기를 해야하는지?
+- .orange + li 인지, .orange+li인지?
+❓❓❓❓❓
+```
+[HTML]
+  <ul>
+    <li>사과</li>
+    <li>딸기</li>
+    <li class="orange">오렌지</li>
+    <li>수박</li> (선택O)
+    <li>망고</li>
+  </ul>
+
+[css]
+.orange+li {
+  color: red;
+}
+
+* .orange의 다음 형제요소(아래에 위치한)인 li를 하나만 선택한다.
+```
+
+**일반 형제 선택자 (~)**
+선택자의 다음 형제 요소를 모두 선택
+❓❓❓❓❓
+- 띄어쓰기를 해야하는지?
+❓❓❓❓❓
+```
+[HTML]
+  <ul>
+    <li>사과</li>
+    <li>딸기</li>
+    <li class="orange">오렌지</li>
+    <li>수박</li> (선택O)
+    <li>망고</li> (선택O)
+  </ul>
+
+[css]
+.orange~li {
+  color: red;
+}
+
+*.orange의 다음 형제들(아래에 있는) 모두가 선택된다.
+```
+
+### 3. 가상 클래스 선택자
+**:hover**
+선택자 요소에 마우스 커서가 올라가 있는 동안에만 선택되는 요소
+```
+[HTML]
+<a href="http://www.naver.com">NAVER</a>
+
+[css]
+a:hover {
+  color: red;
+}
+
+*HTML에서 작성된 NAVER링크에 마우스를 올리면 스타일(css)이 적용되어 글씨 컬러가 레드가 된다.
+```
+**:active**
+선택자 요소에 마우스를 클릭하고 있는 동안 선택된다.
+따라서 마우스 클릭을 눌렀다가 때면 적용된 스타일이 풀린다.
+```
+[HTML]
+<a href="http://www.naver.com">NAVER</a>
+
+[css]
+a:active {
+  color: red;
+}
+```
+
+**:focus**
+선택자 요소가 포커스가 되면 선택된다.
+- focus가 가능한 태그 요소는 html 대화형 콘텐츠에 해당한다.
+예) input, a, button, label, select 등
+- html 대화형 콘텐츠 요소가 아니더라도 tabindex 속성을 사용한 요소도 가능하다.
+(구글에 html 대화형 콘텐츠 mdn 검색해보고 참고하기)
+- focus가 불가능한 요소는
+ tabindex 속성을 통해 focus가 될 수 있는 요소로 만들 수 있다.
+ 순서(값)로 -1이 아닌 다른 것을 넣는것은 권장하지 않는다.
+- 한 페이지에서 한 요소만 가능하므로,
+ 다른 것에 포커스가 되면 다른 요소는 포커스가 풀린다.
+
+```
+[HTML]
+<input type:"text" />
+
+[css]
+input:focus {
+  background-color: red;
+}
+```
+```
+[HTML]
+<div class="box" tabindex="-1"></div>
+
+* focus가 불가능 한 요소인 div를 tabindex="-1"속성을 통해 focus가 가능하게 되었다.
+```
+ 
+### 4. 가상 요소 선택자
+**가상 클래스 선택자**
+**:first-child**
+선택자가 형제 요소 중 첫째라면 선택한다.
+```
+[HTML]
+<div class="fruits">
+  <span>딸기</span> (선택O)
+  <span>수박</span>
+  <div>오렌지</div>
+  <p>망고</p>
+  <h3>사과</h3>
+</div>
+
+[CSS]
+.fruits sapn:first-child {
+  color: red;
+}
+
+* .fruits의 후손(하위) 요소인 span중에 첫째 요소를 선택한다.
+```
+- 선택이 안되는 경우 예시)
+```
+[HTML]
+<div class="fruits">
+  <span>딸기</span> 
+  <span>수박</span>
+  <div>오렌지</div>
+  <p>망고</p>
+  <h3>사과</h3>
+</div>
+
+[CSS]
+.fruits div:first-child {
+  color: red;
+}
+```
+❓❓❓❓❓
+- div는 .fruits의 첫째가 아닌 셋째여서 선택이 안된 것인가?
+- div가 선택되게 할려면 어떻게 입력해야 하는가??? (div에 class명을 입력한 후 선택자를 입력해야하나??)
+❓❓❓❓❓
+
+**:last-child**
+선택자가 형제 요소 중 막내라면 선택한다.
+```
+[HTML]
+<div class="fruits">
+  <span>딸기</span> 
+  <span>수박</span>
+  <div>오렌지</div>
+  <p>망고</p>
+  <h3>사과</h3> (선택O)
+</div>
+
+[CSS]
+.fruits h3:last-child {
+  color: red;
+}
+```
+
+**:nth-child(n)**
+선택자가 형제 요소 중 (n)번째 라면 선택한다.
+```
+[HTML]
+<div class="fruits">
+  <span>딸기</span> 
+  <span>수박</span> (선택O)
+  <div>오렌지</div>
+  <p>망고</p>
+  <h3>사과</h3>
+</div>
+
+[CSS]
+.fruits *:nth-child(2) {
+  color: red;
+}
+
+*.fruits의 하위요소 중 * 전체중에 2번째 형제요소를 선택한다.
+```
+- :nth-child(숫자n)은 배수로 선택된다.
+- 예) :nth-child(2n) = 0,2,4,6,8,10,...번째가 모두 선택된다.
+- 2n은 쉽게 생각하면 짝수 번째(순서)의 형제요소를 선택한다.
+- 2n+1은 홀수 번째의 형제요소를 선택한다. (예시: .fruits *:nth-child(2n+1) )
+```
+[HTML]
+<div class="fruits">
+  <span>딸기</span> 
+  <span>수박</span> (선택O)
+  <div>오렌지</div>
+  <p>망고</p> (선택O)
+  <h3>사과</h3>
+</div>
+
+[CSS]
+.fruits *:nth-child(2n) {
+  color: red;
+}
+```
+- n+2는 2번째 형제요소부터 그 이후인 3,4,5...등 그 다음의 모든 형제요소를 선택한다.
+```
+[HTML]
+<div class="fruits">
+  <span>딸기</span> 
+  <span>수박</span> (선택O)
+  <div>오렌지</div> (선택O)
+  <p>망고</p> (선택O)
+  <h3>사과</h3> (선택O)
+</div>
+
+[CSS]
+.fruits *:nth-child(n+2) {
+  color: red;
+}
+```
+**부정 선택자**
+**:not()**
+()안의 선택자를 제외하고, :not 앞에 적힌 선택자 요소를 선택한다.
+```
+[HTML]
+<div class="fruits">
+  <span>딸기</span> 
+  <span>수박</span> 
+  <div>오렌지</div> (선택O)
+  <p>망고</p> (선택O)
+  <h3>사과</h3> (선택O)
+</div>
+
+[CSS]
+.fruits *:not(span) {
+  color: red;
+}
+
+* .fruits의 후손 요소 * 전부 중에 (span)을 제외한 요소를 선택한다.
+```
+
+### 5. 속성 선택자
+**[ ]**
+[ ]안에 들어간 속성을 포함한 요소를 선택한다.
+- 특이한 속성을 찾기에는 용이하지만,
+ 일반적으로 많이 쓰이는 속성을 선택할 때는 유용하지 않다.
+```
+[HTML]
+<input type="text" value="HELLOW">
+<input type="password" value="1234">
+<input type="text" value="ABCD" disabled> (선택O)
+
+[CSS]
+[disabled] {
+  color: red;
+}
+```
+<br>
+
+```
+[HTML]
+<input type="text" value="HELLOW"> (선택O)
+<input type="password" value="1234"> (선택O)
+<input type="text" value="ABCD" disabled> (선택O)
+
+[CSS]
+[type] {
+  color: red;
+}
+```
+
+**[=""]**
+[]안에 첫번째에(=앞에) 있는 속성을 포함하고, 
+""안에 있는 값의 요소를 선택한다.
+```
+[HTML]
+<input type="text" value="HELLOW"> 
+<input type="password" value="1234"> (선택O)
+<input type="text" value="ABCD" disabled> 
+
+[CSS]
+[type="password"] {
+  color: red;
+}
+```
+# 📌 스타일 상속
+css 스타일이 부모요소에 적용이 되면 자식요소에 그대로 상속되어 적용된다.
+- 상속되는 css 속성들은 모두 글자,문자와 관련된 속성들이다.
+(모든 글자, 문자 속성은 아니다.)
+- 상속되는 글자, 문자 속성 예시) 
+font-style : 글자 기울기
+font-weight : 글자 두께
+font-size : 글자 크기
+line-height : 줄 높이
+font-family : 폰트(서체)
+color : 글자 색상
+text-align : 정렬
+등 이 있다.
+```
+[HTML]
+<div class="ecosystem">생태계
+  <div class="animal">동물 (선택O)
+    <div class="tager">호랑이</div> (선택O)
+    <div class="lion">사자</div> (선택O)
+    <div class="elephant">코끼리</div> (선택O)
+</div>
+  <div class="plant">식물</div>
+</div>
+
+[CSS]
+.animal {
+  color: red;
+}
+
+*.animal은 부모요소이고,
+ tager, lion, elephant는 자식요소 이므로 css에서 부모요소를 선택하면
+ 부모요소와 자식 요소가 모두 선택된다.
+```
+
+**강제 상속**
+**inherit**
+자식요소의 값에 inherit을 입력하면
+부모요소의 값을 상속받아 그대로 적용되어 사용한다.
+이때 부모요소의 값이 바뀌면 자식요소의 값도 같이 변하게 된다.
+```
+[CSS]
+.parent {
+  width: 300px;
+  height: 200px;
+  background-color: red;
+}
+.child {
+  widthL 100px;
+  height: inherit;
+  background-color: inherit;
+}
+
+*inherit은 강제상속을 시켜주는 값이므로
+부모요소인 height값인 200px과 background-color값인 red를 그대로 가져오게 된다.
+```
