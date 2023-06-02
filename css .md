@@ -1,5 +1,3 @@
-CSS의 속성
-
 css는 화면을 꾸며주는 것이므로,
 code가 화면에 어떻게 그려질지 상상하는 것이 중요하다.
 
@@ -40,7 +38,6 @@ code가 화면에 어떻게 그려질지 상상하는 것이 중요하다.
   ❓❓❓❓❓
   글꼴의 크기인데 왜 font-size에다가 적용하지 않고(예시 font-size: 20em;)
   width값에 적용시키나???
-  그리고 width값에 적용시켰는데 왜 박스크기가 커질까???(div에적용했을때)
   (rem도 마찬가지)
 
 - rem
@@ -454,6 +451,143 @@ flex는 1차원 레이아웃을 말한다.
 - 수직정렬
   열 축
   (위 -> 아래)
+
+<br>
+
+# 🔎justify-content
+
+> 주 축의 정렬 방법 (수평)
+> 💡 Flex Container에 사용되는 속성
+
+`flex-start` (기본값)
+
+- flex-items를 시작점으로 정렬
+
+`flex-end`
+
+- flex-items를 끝점으로 정렬
+
+`center`
+
+- flex-items를 가운데 정렬
+
+<br>
+
+# 🔎align-content
+
+> 교차 축의 여러 줄 정렬 방법 (수직)
+> 💡 Flex Container에 사용되는 속성
+
+`stretch` (기본값)
+
+- flex-items를 시작점으로 정렬
+
+`flex-start`
+
+- flex-items를 시작점으로 정렬
+
+`flex-end`
+
+- flex-items를 끝점으로 정렬
+
+`center`
+
+- flex-items를 가운데 정렬
+
+<br>
+
+# 🔎align-items
+
+> 교차 축의 한 줄 정렬 방법 (수직)
+> 💡 Flex Container에 사용되는 속성
+
+`stretch` (기본값)
+
+- flex-items를 교차 축으로 정렬
+
+`flex-start`
+
+- flex-items를 각 줄의 시작점으로 정렬
+
+`flex-end`
+
+- flex-items를 각 줄의 끝점으로 정렬
+
+`center`
+
+- flex-items를 각 줄의 가운데 정렬
+
+<br>
+
+# 🔎flex-wrap
+
+> flex items 묶음(줄바꿈) 여부
+> 💡 Flex items에 사용되는 속성
+
+nowrap상태로 냅두면 flex로 수평정렬을 하였다가 해당되는 공간안에 요소들이
+수평으로 정렬이 안될 경우
+요소들이 찌부되어 표현이 된다.
+이러한 현상을 원치 않을 경우 wrap으로 요소들을 내려(줄바꿈)줄 수 있다.
+
+`nowrap` (기본값)
+
+- 묶음(줄바꿈) 없음
+
+`wrap`
+
+- 여러 줄로 묶음
+
+# 🔎order
+
+> flex items의 순서
+> 💡 Flex items에 사용되는 속성
+
+`0` (기본값)
+순서없음
+
+`숫자`
+숫자가 작을 수록 먼저 온다.
+
+<br>
+
+# 🔎flex-grow
+
+> flex items의 증가 너비 비율
+> 💡 Flex items에 사용되는 속성
+
+`0` (기본값)
+증가 비율 없음
+
+`숫자`
+증가 비율
+
+<br>
+
+# 🔎flex-shrink
+
+> flex items의 감소 너비 비율
+> 💡 Flex items에 사용되는 속성
+
+`1` (기본값)
+flex container 너비에 따라 감소 비율 적용
+
+`숫자`
+감소 비율
+
+<br>
+
+# 🔎flex-basis
+
+> flex items의 공간 배분 전 기본 너비
+> 💡 Flex items에 사용되는 속성
+
+`auto` (기본값)
+요소의 content 너비
+
+`단위`
+px, em, rem등 단위로 지정
+
+<br>
 
 ---
 
@@ -931,3 +1065,152 @@ position 속성의 값으로 absolute, fixed가 지정된 요소는 (relative는
 ---
 
 <br>
+
+# 🔎transition
+
+> 요소의 전환(시작과 끝) 효과를 지정하는 단축 속성
+
+`transition: 속성명 지속시간 타이밍함수 대기시간;` \*지속시간은 단축형으로 작성 할 때, 필수 포함 속성이다!
+
+`transform: 변환함수1 변환함수2 변환함수3 ...;`
+
+`transform: 원근법 이동 크기 회전 기울임;`
+
+## 📍 transition-porperty
+
+> 전환 효과를 사용할 **속성 이름**을 지정
+
+`all` (기본값)
+모든 속성에 적용
+
+`속성이름`
+전환 효과를 사용할 속성 이름 명시
+
+## 📍 transition-duration
+
+> 전환 효과의 **지속시간**을 지정
+
+`0s` (기본값)
+전환 효과 없음
+
+`시간`
+지속시간(s)을 지정
+
+```
+예를 들어 가로길이의 전환은 0.5s로 전환하고
+색의 전환은 5s로 전환 하고 싶을 경우 , 를 사용한다.
+(transition부분 참고)
+
+[css]
+div {
+  width: 100px;
+  height: 100px;
+  background-color: orange;
+  transition:
+    width ,5s,
+    background-color: 2s;
+}
+div:active {
+  width: 3000px;
+  background-color: royalblue;
+
+```
+
+## 📍 transition-timing-function
+
+> 전환 효과의 **타이밍 함수**을 지정
+
+`ease` (기본값)
+느리게 - 빠르게 - 느리게
+cubic-bezier(0.25,0.1,0.25,1)
+
+`linear`
+일정하게
+cubic-bezier(0,0,1,1)
+
+`ease-in`
+느리게 - 빠르게
+
+`ease-out`
+빠르게 - 느리게
+
+`ease-in-out`
+느리게 - 빠르게 - 느리게
+
+\*구글에 (easing funtions)검색해보고 easing 함수 치트 시트에서 움직임 확인 가능,
+(easing funtions mdn)검색하면 css에 적용시킬 수 있는 정보가 나온다.
+(tweenmax easing) 검색하면 easing함수를 시각적으로 다루는 페이지를 이용할 수 있다.
+
+## 📍 transition-delay
+
+> 전환 효과가 몇 초뒤에 시작할 지 **대기 시간**을 지정
+
+`0s` (기본값)
+대기시간 없음
+
+`시간`
+대기시간(s)을 지정
+
+transition에 숫자가 동시에 있을 경우 첫번째가 지속시간 두번째가 대기시간이다
+ex) transition: 1s .5s
+(지속시간: 1초 / 대기시간 0.5초)
+
+<br>
+
+## 📍 2D 변환함수
+
+perspective 원근법 함수는 제일 앞에 작성되어져야 한다.
+
+`translate(x,y)` 이동 (x축, y축)
+`translateX(x)` 이동 (x축)
+`translateY(y)` 이동 (y축)
+`scale(x,y)` 크기 (x축, y축)
+
+`rotate(degree)` 회전 (각도)
+`skewX(x)` 기울임 (x축)
+`skewY(y)` 기울임 (y축)
+
+## 📍 3D 변환함수
+
+perspective 원근법 함수는 제일 앞에 작성되어져야 한다.
+
+`perspective(n)` 원근법 (거리)
+
+`rotateX(x)` 회전 (x축)
+`rotateY(y)` 회전 (y축)
+
+<br>
+
+# 🔎perspective
+
+> 하위 요소를 관찰하는 원근 거리를 지정
+
+함수의 perspective와는 달리 속성 요소이며, 부모 요소에 위치를 지정한다.
+요소에 넣는 함수 사용보다는
+부모 요소에 넣는 속성요소를 사용해 주는 것을 권장한다.
+
+```
+함수의 perspective 사용법
+transfrom: perspective(500px) rotareY(45deg);
+
+속성의 perspective 사용법
+perspective: 500px;
+
+```
+
+`단위`
+px등 단위로 지정
+
+<br>
+
+# 🔎backface-visibility
+
+> 3D 변환으로 회전된 요소의 뒷면 숨김 여부
+
+`visible` (기본값)
+뒷면 보임
+
+`hidden`
+뒷면 숨김
+
+뒷면을 숨긴 요소는 화면에 보이지 않는다.
