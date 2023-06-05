@@ -1,18 +1,20 @@
 # 📌 표기법
 
 ### dash-case (kebab-case)
+
 html css에서 사용된다.
-예시) the-quick-brown-fox-jumps-over-the-lazy-dog
--기호를 띄어쓰기 대신 사용된다.
+예시) the-quick-brown-fox-jumps-over-the-lazy-dog -기호를 띄어쓰기 대신 사용된다.
 컴퓨터는 하나의 단어로 인식한다.
 
 ### snaake_case
+
 html css에서 사용된다.
 예시) the_quick_brown_fox_jumps_over_the_lazy_dog
 언더슬래쉬 기호를 띄어쓰기 대신 사용한다.
 컴퓨터는 하나의 단어로 인식한다.
 
 ### camelCase
+
 js에서 사용된다.
 예시) theQuickBrownFoxJumpsOverTheLazyDog
 첫번째 글자는 소문자를 사용하고 다음단어의 첫글자는 대문자를 사용한다.
@@ -20,17 +22,20 @@ js에서 사용된다.
 대부분의 경우는 camelCase를 사용한다.
 
 ### ParcelCase
+
 js에서 사용된다.
 예시) TheQuickBrownFoxJumpsOverTheLazyDog
 첫번째 글자도 대문자로 시작한다.
 
 ## Zero-based Numbering
+
 0기반 번호 매기기!
 특수한 경우를 제외하고 0부터 숫자를 시작한다.
 
 요일에 대한 개념은 일요일이 0부터 시작하여 월요일은 1 ~ 토요일은 6으로 끝난다.
 
 ## 주석처리
+
 js에서의 주석처리 방법
 단축키 : ctrl /
 
@@ -44,45 +49,51 @@ js에서의 주석처리 방법
  * 메모1
  * 메모2
  */
- 
+
 ```
 
 # 📌 데이터 종류 (자료형)
 
 ### string
+
 > 문자데이터
 
 `" "` `' '`
-따옴표로 묶여있는 글자들이 하나의 문자 데이터 이다. 
+따옴표로 묶여있는 글자들이 하나의 문자 데이터 이다.
 큰 따옴표와 작은 따옴표를 사용하며, 이 둘을 가리지 않는다.
 ` `` `
 백틱 기호는 보간법의 기호이다.
 예) let hello = 'Hello ${myname}?!'
 
 ### Number
+
 > 숫자 데이터
-정수 및 부동소수점 숫자를 나타낸다.
+> 정수 및 부동소수점 숫자를 나타낸다.
 
 예) 123(정수), 1.57(부동소수점 숫자) 등
 "123"은 안에 숫자가 있지만 숫자데이터로 인식하지 않고
 "따옴표로 인해 문자데이터로 인식된다.
 
 ### Boolean
->불린 데이터
-true, false 두 가지 값 밖에 없는 논리 데이터 이다.
+
+> 불린 데이터
+> true, false 두 가지 값 밖에 없는 논리 데이터 이다.
 
 true 진실
 false 거짓
 
 ### Underfined
+
 > 값이 할당되지(지정되지) 않은 상태를 나타낸다.
 
 변수에 값을 주지 않아도 underfined데이터로 인식하여 하나의 데이터되어 출력 된다.
 
 ### Null
+
 > 어떤 값이 **의도적**으로 비어있음을 의미한다.
 
-예) 
+예)
+
 ```
 let empty = null;
 
@@ -90,9 +101,10 @@ console.log(empty); // null
 ```
 
 ### Object
+
 > 객체 데이터
-여러 데이터를 **Key:Value** 형태로 저장하는 데이터형태이다. 
-{중괄호 사이에 데이터의 집합을 추가한다.}
+> 여러 데이터를 **Key:Value** 형태로 저장하는 데이터형태이다.
+> {중괄호 사이에 데이터의 집합을 추가한다.}
 
 ```
 예)
@@ -106,15 +118,17 @@ let user = {
 console.log(user.name); // HEROPY
 console.log(user.age); // 85
 console.log(user.isValid); // true
-  
+
 ```
 
 ### Array
->배열 데이터
-여러 데이터를 순차적으로 저장한다.
-[대괄호 사이에 ,를 이용하여 순차적으로 입력한다.]
+
+> 배열 데이터
+> 여러 데이터를 순차적으로 저장한다.
+> [대괄호 사이에 ,를 이용하여 순차적으로 입력한다.]
 
 예)
+
 ```
 let fruits = ['Apple', 'Banana', 'Cherry'};
 
@@ -124,15 +138,18 @@ console.log(fruits[2]); // 'Cherry'
 ```
 
 # 📌 변수
+
 데이터를 저장하고 참조(사용)하는 데이터의 이름
 var(최근에는 권장하지 않음), let, const
 
 ### let
-> 변수를 선언한다. 
-(let 원하는이름명시 = 데이터입력; 하는 것을 변수를 선언한다고 한다.)
-재사용이 가능하다.
+
+> 변수를 선언한다.
+> (let 원하는이름명시 = 데이터입력; 하는 것을 변수를 선언한다고 한다.)
+> 재사용이 가능하다.
 
 예)
+
 ```
 let a = 2;
 let b = 5;
@@ -148,8 +165,7 @@ console.log(a / b); // 0.4
 let을 이용하여 변수를 선언한 후,
 새로운 값으로 변수를 재 할당 할 수 있다.
 
-
-``` 
+```
 let a = 12;
 console.log(a); //12
 
@@ -160,17 +176,19 @@ console.log(a); //999
 ### const
 
 > 변수를 선언한다.
-재할당이 불가능 하다.
+> 재할당이 불가능 하다.
 
 대부분의 경우에는 재할당이 불가한 **const를 주로 사용**하며,
 재할당이 필요한 경우에만 let으로 수정 후 사용한다.
 
 # 📌 예약어
+
 > 특별한 의미를 가지고 있어, 변수나 함수 이름 등으로 사용할 수 없는 단어
 
 Reserved Word
 
 예)
+
 ```
 let this = 'Hello!'; // SyntaxError문법에러
 let if = 123; // SyntaxError
@@ -178,11 +196,13 @@ let brak = true; // SyntaxError
 ```
 
 # 📌 함수
+
 > 특정 동작(기능)을 수행하는 일부 코드의 집합(부분)
 
 function
 
 예)
+
 ```
 // 함수 선언
 function helloFunc() {
@@ -230,7 +250,7 @@ funxtion hello() {
   console.log('hello~');
 }
 
-// 🔎익명(이름이 없는) 함수 
+// 🔎익명(이름이 없는) 함수
 // (함수인 finction 뒷 부분에 이름이 없다. 데이터로 활용이 되거나 변수에 할당되어 활용되기도 한다.)
 // 함수 **표현**
 let world - function () {
@@ -256,15 +276,17 @@ const heropy
 const hisName = heropy.getName();
 console.log(hisName); // HEROPY
 // 혹은
-console.log(heropy.getName()); // HEROPY 
+console.log(heropy.getName()); // HEROPY
 ```
+
 # 📌 조건문
+
 > 조건의 결과(truthy, falsy)에 따라 다른 코드를 실행하는 구문
 
 if, else
 
-
 예)
+
 ```
 let isShow = true;
 let checked = false;
@@ -298,8 +320,8 @@ if (isShow) {
 } // Hide? 출력
 ```
 
-
 # 📌 DOM API
+
 > 자바스크립트로 HTML을 제어하기 위해 사용하는 명령들
 
 Document Object Model, Application Programming Interface
@@ -307,6 +329,7 @@ DOM : HTML의 div, span, input 요소
 API : 웹사이트가 동작하기 위해 입력하는 프로그램 명령들
 
 예)
+
 ```
 [HTML]
 🔎 head부분 먼저 해석이 된 후 실행되기 때문에 js에서 body부분에 작성한 코드를 읽지 못한다.
@@ -379,9 +402,11 @@ console.log(boxEl.textContent); // HEROPY?!
 ```
 
 # 📌 메소드 체이닝
+
 Method Chaining
 
 예)
+
 ```
 const a = 'Hello~';
 // split: 문자를 인수 기준으로 쪼개서 배열로 반환.
